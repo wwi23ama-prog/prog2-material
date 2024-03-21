@@ -1,4 +1,4 @@
-package de.wwi23ama.vl_2024_03_15;
+package de.wwi23ama.vl_2024_03_22;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
