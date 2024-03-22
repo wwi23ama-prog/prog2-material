@@ -46,10 +46,10 @@ public class DynArray {
     /** Replaces the current data array with a new one with the given capacity.
      *  Copies all elements from the current array to the new array.
      */
-    private void resize(int capacity) {
-        int[] newData = new int[capacity];
-        System.arraycopy(data, 0, newData, 0, size);
-        data = newData;
-        this.capacity = capacity;
+    private void resize(int newCapacity) {
+        int[] newData = new int[newCapacity];
+        System.arraycopy(this.data, 0, newData, 0, size);
+        this.data = newData;
+        this.capacity = newCapacity;
     }
 }
