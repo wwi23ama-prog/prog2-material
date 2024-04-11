@@ -2,6 +2,7 @@ package de.wwi23ama.vl_2024_04_11;
 
 public class Element {
     int key;
+    int height;
 
     Element left;
     Element right;
@@ -14,6 +15,7 @@ public class Element {
         this.key = key;
         this.left = new Element();
         this.right = new Element();
+        this.height = 1;
     }
 
     public void add(int key) {
@@ -25,6 +27,7 @@ public class Element {
             } else {
                 right.add(key);
             }
+            this.height = 1 + Math.max(left.height, right.height);
         }
     }
 }
