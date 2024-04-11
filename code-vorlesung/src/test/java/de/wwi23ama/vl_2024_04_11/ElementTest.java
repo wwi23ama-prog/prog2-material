@@ -12,9 +12,11 @@ public class ElementTest {
         Element e = new Element();
 
         // ... then the key should be 0 ...
-        // ... and the element should count as empty.
+        // ... and the element should count as empty ...
+        /// ... and the height should be 0.
         assertEquals(0, e.key);
         assert(e.isEmtpy());
+        assertEquals(0, e.height);
     }
     
     @Test
@@ -33,9 +35,11 @@ public class ElementTest {
         // ... when creating a right child ...
         e.right = new Element();
 
-        // ... then the key should be 42 and the element should not be empty.
+        // ... then the key should be 42 and the element should not be empty ...
+        // ... and the height should be 1.
         assertEquals(42, e.key);
         assert(!e.isEmtpy());
+        assertEquals(1, e.height);
     }
 
     @Test
@@ -47,9 +51,11 @@ public class ElementTest {
         e.setKey(42);
 
         // ... then the key should be 42 ...
-        // ... and the element should not be empty.
+        // ... and the element should not be empty ...
+        // ... and the height should be 1.
         assertEquals(42, e.key);
         assert(!e.isEmtpy());
+        assertEquals(1, e.height);
     }
 
     @Test
@@ -71,6 +77,9 @@ public class ElementTest {
 
         // ... then the tree should not be empty ...
         assert(!root.isEmtpy());
+
+        // ... we do not check the height here,
+        // ... because it is not updated by set.
         
         // ... when adding an element to the root ...
         root.add(1);
@@ -78,5 +87,51 @@ public class ElementTest {
         // ... then there should be a new element with the key 1
         //     at root.left.left.
         assertEquals(1, root.left.left.key);
+    }
+
+    @Test
+    public void testElement_add_many() {
+        // Given a root element ...
+        Element root = new Element();
+
+        // ... when adding some elements ...
+        root.setKey(42);
+        root.add(23);
+        root.add(1337);
+        root.add(666);
+        root.add(38);
+
+        // ... then we should gets a tree like this:
+        //     42
+        //    /  \
+        //  23   1337
+        //   \   /
+        //   38 666
+
+        assertEquals(42, root.key);
+        assertEquals(3, root.height);
+
+        assertEquals(23, root.left.key);
+        assertEquals(2, root.left.height);
+
+        assertEquals(1337, root.right.key);
+        assertEquals(2, root.right.height);
+
+        assert(root.left.left.isEmtpy());
+        assertEquals(0, root.left.left.height);
+
+        assertEquals(38, root.left.right.key);
+        assertEquals(1, root.left.right.height);
+        
+        assertEquals(666, root.right.left.key);
+        assertEquals(1, root.right.left.height);
+
+        assert(root.right.right.isEmtpy());
+        assertEquals(0, root.right.right.height);
+
+        assert(root.left.right.left.isEmtpy());
+        assert(root.left.right.right.isEmtpy());
+        assert(root.right.left.left.isEmtpy());
+        assert(root.right.left.right.isEmtpy());
     }
 }
