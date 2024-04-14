@@ -28,6 +28,18 @@ public class Element {
                 right.add(key);
             }
             this.height = 1 + Math.max(left.height, right.height);
+            int bf = right.height - left.height;
+            if (bf == 2) {
+                int bf_right = right.right.height - right.left.height;
+                if (bf_right == 1) {
+                    // rotate left
+                } else { // bf_right == -1
+                    // rotate right-left
+                }
+            } else if (bf == -2) {
+                // if balance factor of left subtree is 1, rotate left-right
+                // if balance factor of left subtree is -1, rotate right
+            }
         }
     }
 }

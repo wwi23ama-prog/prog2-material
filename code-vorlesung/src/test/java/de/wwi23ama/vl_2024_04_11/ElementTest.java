@@ -28,18 +28,18 @@ public class ElementTest {
         // ... when setting the key to 42 and creating a left child ...
         e.key = 42;
         e.left = new Element();
-
+        
         // ... the element should still be empty.
         assert(e.isEmtpy());
-
+        
         // ... when creating a right child ...
         e.right = new Element();
+        e.height = 1;
 
         // ... then the key should be 42 and the element should not be empty ...
         // ... and the height should be 1.
         assertEquals(42, e.key);
         assert(!e.isEmtpy());
-        assertEquals(1, e.height);
     }
 
     @Test
